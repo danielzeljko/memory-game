@@ -3,7 +3,7 @@
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
-const NUM_CARD_PAIRS = 10;
+const NUM_CARD_PAIRS = 8;
 let isBoardLocked = false;
 let totalFlips = 0;
 let pairsRemaining = NUM_CARD_PAIRS;
