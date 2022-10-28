@@ -126,3 +126,18 @@ function updateFlips(){
   const flips = document.getElementById("flips");
   flips.textContent = totalFlips;
 }
+
+function countDownTimer(){
+  const time = document.getElementById("time");
+  let count = 60;
+  time.textContent = count;
+
+  const timer = setInterval(() => {
+    count--;
+    time.textContent = count;
+
+    if(count === 0) clearInterval(timer);
+  }, FOUND_MATCH_WAIT_MSECS);
+}
+
+countDownTimer();
