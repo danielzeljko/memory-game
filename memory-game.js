@@ -3,6 +3,7 @@
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
+let isBoardLocked = false;
 
 /** Generates random RGB color values */
 function generateRandomColors() {
@@ -53,6 +54,8 @@ function createCards(colors) {
     const img = document.createElement("img");
     card.classList = "card hidden";
     card.style.background = color;
+    card.setAttribute("data-flipped", false);
+    card.setAttribute("data-matched", false);
     img.src = "assets/rithm-logo.svg";
     img.alt = "";
     card.appendChild(img);
@@ -66,21 +69,52 @@ function createCards(colors) {
 function flipCard(card) {
   card.classList.toggle("visible");
   card.classList.toggle("hidden");
+  card.dataset.flipped = true;
+  checkCardMatch();
 }
 
 /** Flip a card face-down. */
 
-function unFlipCard(card) {
+function unFlipCard(cards) {
   setTimeout(() => {
-    card.classList.toggle("visible");
-    card.classList.toggle("hidden");
-  }, FOUND_MATCH_WAIT_MSECS);
+
+    cards.map(card => {
+      card.classList.toggle("visible");
+      card.classList.toggle("hidden");
+      card.dataset.flipped = false;
+    });
+
+    isBoardLocked = false;
+
+  }, FOUND_MATCH_WAIT_MSECS + 500);
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
+  if (isBoardLocked) return;
+
   const thisCard = evt.target;
-  flipCard(thisCard);
-  unFlipCard(thisCard);
+  if(thisCard.dataset.flipped === "false") flipCard(thisCard);
+}
+
+/** Checks to see if the two cards match each other */
+function checkCardMatch() {
+  const options = `div[data-flipped="true"]:not(div[data-matched="true"])`;
+  const currFlippedCards = document.querySelectorAll(options);
+
+  if (currFlippedCards.length === 2) {
+    isBoardLocked = true;
+
+    const [firstCard, secondCard] = currFlippedCards;
+    if (firstCard.style.backgroundColor !== secondCard.style.backgroundColor) {
+      unFlipCard([firstCard, secondCard]);
+    } else {
+      firstCard.removeEventListener("click", handleCardClick);
+      secondCard.removeEventListener("click", handleCardClick);
+      firstCard.dataset.matched = true;
+      secondCard.dataset.matched = true;
+      isBoardLocked = false;
+    }
+  }
 }
