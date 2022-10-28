@@ -57,20 +57,23 @@ function createCards(colors) {
 /** Flip a card face-up. */
 
 function flipCard(card) {
-  console.log("in here")
   card.classList.toggle("visible");
+  card.classList.toggle("hidden");
 }
 
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
-  // ... you need to write this ...
+  setTimeout(() => {
+    card.classList.toggle("visible");
+    card.classList.toggle("hidden");
+  }, FOUND_MATCH_WAIT_MSECS);
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
   const thisCard = evt.target;
-  console.log(thisCard);
   flipCard(thisCard);
+  unFlipCard(thisCard);
 }

@@ -41,7 +41,6 @@ body {
 .card.visible {
   transform: rotateY(180deg);
   transition: all 1.3s ease;
-  background: red !important;
 }
 
 .card.visible img {
