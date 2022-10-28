@@ -11,10 +11,17 @@
 </head>
 
 <body>
+  <h1>Rithm Color Match!</h1>
+  <p>Find all the matching pairs as fast as possible</p>
 
-  <h1>Memory Game!</h1>
-
-  <div id="game" class="game-wrapper"></div>
+  <div class="game-container">
+    <ul>
+      <li>Current level: <span id="level">1</span></li>
+      <li>Flips: <span id="flips">0</span></li>
+      <li>Time Remaining <span id="time">60</span></li>
+    </ul>
+    <div id="game" class="game-wrapper"></div>
+  </div>
 
   <script src="memory-game.js"></script>
 
