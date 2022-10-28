@@ -1,9 +1,53 @@
-/* you can add to or change this. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-#game div {
-  border: 1px solid black;
+body {
+  background: rgb(22, 21, 21);
+  color: white;
+  min-height: 100vh;
+}
+
+.game-wrapper {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 10px;
+  justify-content: center;
+}
+
+.card {
   width: 100px;
   height: 100px;
-  margin: 20px;
-  display: inline-block;
+  border: 2px solid white;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  height: 50%;
+  width: 50%;
+  /* Make sure only the card can be clicked and
+  have it's visibility toggled.*/
+  pointer-events: none;
+
+}
+
+.card.visible {
+  transform: rotateY(180deg);
+  transition: all 1.3s ease;
+  background: red !important;
+}
+
+.card.visible img {
+  display: none;
+}
+
+.hidden {
+  background: grey !important;
 }

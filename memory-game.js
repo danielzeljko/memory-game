@@ -42,14 +42,23 @@ function createCards(colors) {
   const gameBoard = document.getElementById("game");
 
   for (let color of colors) {
-    // missing code here ...
+    const card = document.createElement("div");
+    const img = document.createElement("img");
+    card.classList = "card hidden";
+    card.style.background = color;
+    img.src = "assets/rithm-logo.svg";
+    img.alt = "";
+    card.appendChild(img);
+    gameBoard.appendChild(card);
+    card.addEventListener("click", handleCardClick);
   }
 }
 
 /** Flip a card face-up. */
 
 function flipCard(card) {
-  // ... you need to write this ...
+  console.log("in here")
+  card.classList.toggle("visible");
 }
 
 /** Flip a card face-down. */
@@ -61,5 +70,7 @@ function unFlipCard(card) {
 /** Handle clicking on a card: this could be first-card or second-card. */
 
 function handleCardClick(evt) {
-  // ... you need to write this ...
+  const thisCard = evt.target;
+  console.log(thisCard);
+  flipCard(thisCard);
 }
