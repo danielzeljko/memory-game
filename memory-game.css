@@ -52,12 +52,13 @@ body {
   background: grey !important;
 }
 
-h1, p {
+.game-container,
+h1,
+p {
   text-align: center;
 }
 
-.game-container ul{
-  text-align: center;
+.game-container ul {
   list-style: none;
   margin-top: 2rem;
 }
@@ -65,4 +66,27 @@ h1, p {
 .game-container ul li {
   display: inline-block;
   margin-right: 1rem;
+}
+
+.btn {
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.btn-outline-light {
+  border: 2px solid white;
+  background: transparent;
+}
+
+.text-light {
+  color: white;
+}
+
+#playBtn {
+  margin-top: 2rem;
+}
+
+.d-none {
+  display: none;
 }
