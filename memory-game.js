@@ -3,35 +3,69 @@
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
+const NUM_CARD_PAIRS = 10;
 let isBoardLocked = false;
 let totalFlips = 0;
-let currentLevel = 1;
+let pairsRemaining = NUM_CARD_PAIRS;
+let timerId;
 
 const playBtn = document.getElementById("playBtn");
 playBtn.addEventListener("click", startGame)
+
+const restartBtn = document.getElementById("restartBtn");
+restartBtn.addEventListener("click", resetGame);
 
 /** Starts the game */
 function startGame(){
   const gameStats = document.getElementById("game-stats");
   gameStats.classList.toggle("d-none");
   playBtn.classList.toggle("d-none");
+  createBoard();
+}
+
+/** Create the game game board */
+
+function createBoard(){
+  // reset previous board
+  const gameBoard = document.getElementById("game");
+  gameBoard.innerHTML = "";
+
+  // create new board
   const colors = shuffle(generateRandomColors());
   createCards(colors);
   initializeStats();
-  countDownTimer();
+  countUpTimer();
 }
 
+/** Restart the game */
+
+function resetGame(){
+  initializeStats();
+  createBoard();
+
+  // hide restart section
+  const restartDiv = document.getElementById("restart");
+  restartDiv.classList.add("d-none");
+}
+
+/** Set up the game stats */
 function initializeStats() {
-  const level = document.getElementById("level");
+  clearInterval(timerId);
+
+  const time = document.getElementById("time");
+  const pairs = document.getElementById("pairs");
   const flips = document.getElementById("flips");
-  flips.textContent = 0;
-  level.textContent = currentLevel;
+  time.textContent = 0;
+  totalFlips = 0;
+  flips.textContent = totalFlips;
+  pairsRemaining = NUM_CARD_PAIRS;
+  pairs.textContent = pairsRemaining;
 }
 
 /** Generates random RGB color values */
 function generateRandomColors() {
   const randColors = [];
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= NUM_CARD_PAIRS; i++) {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
@@ -138,24 +172,40 @@ function checkCardMatch() {
       firstCard.dataset.matched = true;
       secondCard.dataset.matched = true;
       isBoardLocked = false;
+      pairsRemaining--;
+      pairs.textContent = pairsRemaining;
+
+      if(pairsRemaining === 0) gameOver();
     }
   }
 }
+
+/** Increate total flips and update the UI */
 
 function updateFlips(){
   totalFlips++;
   flips.textContent = totalFlips;
 }
 
-function countDownTimer(){
+/** Start the count up timer */
+
+function countUpTimer(){
   const time = document.getElementById("time");
-  let count = 60;
+  let count = 0;
   time.textContent = count;
 
   const timer = setInterval(() => {
-    count--;
-    time.textContent = count;
+    timerId = timer;
 
-    if(count === 0) clearInterval(timer);
+    count++;
+    time.textContent = `${count} sec`;
   }, FOUND_MATCH_WAIT_MSECS);
+}
+
+/** Show game over and stop timer */
+
+function gameOver(){
+  const restart = document.getElementById("restart");
+  restart.classList.remove("d-none")
+  clearInterval(timerId);
 }

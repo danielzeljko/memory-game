@@ -76,6 +76,11 @@ p {
   cursor: pointer;
 }
 
+.btn-sm {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
 .btn-outline-light {
   border: 2px solid white;
   background: transparent;

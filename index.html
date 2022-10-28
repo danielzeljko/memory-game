@@ -19,11 +19,15 @@
     <button id="playBtn" class="btn btn-outline-light text-light pulsate">Play</button>
 
     <ul id="game-stats" class="d-none">
-      <li>Current level: <span id="level"></span></li>
+      <li>Pairs left: <span id="pairs"></span></li>
       <li>Flips: <span id="flips"></span></li>
-      <li>Time Remaining: <span id="time"></span></li>
+      <li>Time: <span id="time"></span></li>
     </ul>
     <div id="game" class="game-wrapper"></div>
+    <div id="restart" class="d-none">
+      <h2>Nice! You set a personal record!</h2>
+      <button id="restartBtn" class="btn btn-sm">Restart</button>
+    </div>
   </div>
 
   <script src="memory-game.js"></script>
