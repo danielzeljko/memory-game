@@ -3,13 +3,20 @@
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
-const COLORS = [
-  "red", "blue", "green", "orange", "purple",
-  "red", "blue", "green", "orange", "purple",
-];
 
-const colors = shuffle(COLORS);
+/** Generates random RGB color values */
+function generateRandomColors() {
+  const randColors = [];
+  for (let i = 1; i <= 5; i++) {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    randColors.push(`rgb(${r}, ${g}, ${b})`, `rgb(${r}, ${g}, ${b})`);
+  }
+  return randColors;
+}
 
+const colors = shuffle(generateRandomColors());
 createCards(colors);
 
 
