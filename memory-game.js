@@ -4,6 +4,7 @@
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
 let isBoardLocked = false;
+let totalFlips = 0;
 
 /** Generates random RGB color values */
 function generateRandomColors() {
@@ -67,6 +68,7 @@ function createCards(colors) {
 /** Flip a card face-up. */
 
 function flipCard(card) {
+  updateFlips();
   card.classList.toggle("visible");
   card.classList.toggle("hidden");
   card.dataset.flipped = true;
@@ -117,4 +119,10 @@ function checkCardMatch() {
       isBoardLocked = false;
     }
   }
+}
+
+function updateFlips(){
+  totalFlips++;
+  const flips = document.getElementById("flips");
+  flips.textContent = totalFlips;
 }
