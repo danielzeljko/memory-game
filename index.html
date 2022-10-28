@@ -15,9 +15,12 @@
   <p>Find all the matching pairs as fast as possible</p>
 
   <div class="game-container">
-    <ul>
-      <li>Current level: <span id="level">1</span></li>
-      <li>Flips: <span id="flips">0</span></li>
+
+    <button id="playBtn" class="btn btn-outline-light text-light">Play</button>
+
+    <ul id="game-stats" class="d-none">
+      <li>Current level: <span id="level"></span></li>
+      <li>Flips: <span id="flips"></span></li>
       <li>Time Remaining: <span id="time"></span></li>
     </ul>
     <div id="game" class="game-wrapper"></div>

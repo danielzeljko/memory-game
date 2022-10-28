@@ -5,6 +5,28 @@
 const FOUND_MATCH_WAIT_MSECS = 1000;
 let isBoardLocked = false;
 let totalFlips = 0;
+let currentLevel = 1;
+
+const playBtn = document.getElementById("playBtn");
+playBtn.addEventListener("click", startGame)
+
+/** Starts the game */
+function startGame(){
+  const gameStats = document.getElementById("game-stats");
+  gameStats.classList.toggle("d-none");
+  playBtn.classList.toggle("d-none");
+  const colors = shuffle(generateRandomColors());
+  createCards(colors);
+  initializeStats();
+  countDownTimer();
+}
+
+function initializeStats() {
+  const level = document.getElementById("level");
+  const flips = document.getElementById("flips");
+  flips.textContent = 0;
+  level.textContent = currentLevel;
+}
 
 /** Generates random RGB color values */
 function generateRandomColors() {
@@ -17,9 +39,6 @@ function generateRandomColors() {
   }
   return randColors;
 }
-
-const colors = shuffle(generateRandomColors());
-createCards(colors);
 
 
 /** Shuffle array items in-place and return shuffled array. */
@@ -123,7 +142,6 @@ function checkCardMatch() {
 
 function updateFlips(){
   totalFlips++;
-  const flips = document.getElementById("flips");
   flips.textContent = totalFlips;
 }
 
@@ -139,5 +157,3 @@ function countDownTimer(){
     if(count === 0) clearInterval(timer);
   }, FOUND_MATCH_WAIT_MSECS);
 }
-
-countDownTimer();
