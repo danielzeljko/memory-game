@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .card img {
@@ -72,6 +73,7 @@ p {
   font-family: inherit;
   font-size: 1.5rem;
   padding: 1rem 2rem;
+  cursor: pointer;
 }
 
 .btn-outline-light {
@@ -109,3 +111,15 @@ p {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+/* looks weird */
+/* .pulsate {
+  transform: scale(1);
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.65); }
+  50% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);}
+} */
