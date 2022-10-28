@@ -97,14 +97,16 @@ function flipCard(card) {
 /** Flip a card face-down. */
 
 function unFlipCard(cards) {
+  cards.map(card => card.classList.remove("incorrect"))
+
   setTimeout(() => {
 
     cards.map(card => {
+      card.classList.add("incorrect");
       card.classList.toggle("visible");
       card.classList.toggle("hidden");
       card.dataset.flipped = false;
     });
-
     isBoardLocked = false;
 
   }, FOUND_MATCH_WAIT_MSECS + 500);
