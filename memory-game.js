@@ -21,15 +21,16 @@ function startGame(){
   gameStats.classList.toggle("d-none");
   playBtn.classList.toggle("d-none");
   createBoard();
-  playTheme();
+  // playTheme();
 }
 
+// didn't feel like implementing a mute button
 /** Play the game theme song */
 
-function playTheme(){
-  const audio = new Audio("assets/Extreme-Sport-Trap-Music-PISTA.mp3");
-  audio.play();
-}
+// function playTheme(){
+//   const audio = new Audio("assets/Extreme-Sport-Trap-Music-PISTA.mp3");
+//   audio.play();
+// }
 
 /** Play the correct tone */
 
@@ -64,7 +65,7 @@ function createBoard(){
 function resetGame(){
   initializeStats();
   createBoard();
-  playTheme();
+  // playTheme();
 
   // hide restart section
   const restartDiv = document.getElementById("restart");
