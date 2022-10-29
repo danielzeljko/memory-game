@@ -24,8 +24,24 @@ function startGame(){
   playTheme();
 }
 
+/** Play the game theme song */
+
 function playTheme(){
-  const audio = new Audio("./assets/Extreme-Sport-Trap-Music-PISTA.mp3");
+  const audio = new Audio("assets/Extreme-Sport-Trap-Music-PISTA.mp3");
+  audio.play();
+}
+
+/** Play the correct tone */
+
+function playRight(){
+  const audio = new Audio("assets/mixkit-correct-answer-tone-2870.wav");
+  audio.play();
+}
+
+/** Play the incorrect tone */
+
+function playWrong(){
+  const audio = new Audio("assets/mixkit-failure-arcade-alert-notification-240.wav");
   audio.play();
 }
 
@@ -149,7 +165,7 @@ function unFlipCard(cards) {
       card.dataset.flipped = false;
     });
     isBoardLocked = false;
-
+    playWrong();
   }, FOUND_MATCH_WAIT_MSECS + 500);
 }
 
@@ -181,6 +197,8 @@ function checkCardMatch() {
       isBoardLocked = false;
       pairsRemaining--;
       pairs.textContent = pairsRemaining;
+      playRight();
+
 
       if(pairsRemaining === 0) gameOver();
     }
