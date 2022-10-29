@@ -21,6 +21,12 @@ function startGame(){
   gameStats.classList.toggle("d-none");
   playBtn.classList.toggle("d-none");
   createBoard();
+  playTheme();
+}
+
+function playTheme(){
+  const audio = new Audio("./assets/Extreme-Sport-Trap-Music-PISTA.mp3");
+  audio.play();
 }
 
 /** Create the game game board */
@@ -42,6 +48,7 @@ function createBoard(){
 function resetGame(){
   initializeStats();
   createBoard();
+  playTheme();
 
   // hide restart section
   const restartDiv = document.getElementById("restart");
