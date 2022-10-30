@@ -6,6 +6,7 @@ const FOUND_MATCH_WAIT_MSECS = 1000;
 const NUM_CARD_PAIRS = 8;
 let isBoardLocked = false;
 let totalFlips = 0;
+let elapsedTime = null;
 let pairsRemaining = NUM_CARD_PAIRS;
 let timerId;
 
@@ -15,11 +16,31 @@ playBtn.addEventListener("click", startGame)
 const restartBtn = document.getElementById("restartBtn");
 restartBtn.addEventListener("click", resetGame);
 
+const highScoreBtn = document.getElementById("highScoreBtn");
+highScoreBtn.addEventListener("click", showHighScore);
+
+const highestScore = {
+  time: null,
+  flips: null,
+}
+
+/** Show highscore */
+function showHighScore(){
+  const highestScore = JSON.parse(localStorage.getItem("highestScore"));
+  if(highestScore){
+    alert(JSON.stringify(JSON.parse(localStorage.getItem("highestScore")), null, 2))
+  } else {
+    alert("No highscore has been set.")
+  }
+}
+
 /** Starts the game */
 function startGame(){
   const gameStats = document.getElementById("game-stats");
   gameStats.classList.toggle("d-none");
   playBtn.classList.toggle("d-none");
+  const newRecord = document.getElementById("newRecord");
+  newRecord.classList.add("d-none")
   createBoard();
   // playTheme();
 }
@@ -201,7 +222,9 @@ function checkCardMatch() {
       playRight();
 
 
-      if(pairsRemaining === 0) gameOver();
+      if(pairsRemaining === 0){
+        gameOver();
+      }
     }
   }
 }
@@ -224,14 +247,37 @@ function countUpTimer(){
     timerId = timer;
 
     count++;
+    elapsedTime = count;
     time.textContent = `${count} sec`;
   }, FOUND_MATCH_WAIT_MSECS);
 }
 
-/** Show game over and stop timer */
+/** Show game over, stop timer, set high score */
 
 function gameOver(){
   const restart = document.getElementById("restart");
   restart.classList.remove("d-none")
   clearInterval(timerId);
+  setHighScore();
+}
+
+/** Set high score */
+function setHighScore(){
+  const lastHighScore = JSON.parse(localStorage.getItem("highestScore"));
+
+  if(lastHighScore){
+
+    if(elapsedTime < lastHighScore.time && totalFlips <= lastHighScore.flips) {
+      highestScore.flips = totalFlips;
+      highestScore.time = elapsedTime;
+      localStorage.setItem("highestScore", JSON.stringify(highestScore));
+      const newRecord = document.getElementById("newRecord");
+      newRecord.classList.remove("d-none")
+    }
+
+  } else {
+    highestScore.flips = totalFlips;
+    highestScore.time = elapsedTime;
+    localStorage.setItem("highestScore", JSON.stringify(highestScore));
+  }
 }

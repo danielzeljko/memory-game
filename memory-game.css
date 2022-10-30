@@ -82,6 +82,8 @@ p{
   font-size: 1.5rem;
   padding: 1rem 2rem;
   cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .btn-sm {
@@ -96,10 +98,6 @@ p{
 
 .text-light {
   color: white;
-}
-
-#playBtn {
-  margin-top: 2rem;
 }
 
 .d-none {
