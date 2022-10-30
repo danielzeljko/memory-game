@@ -1,9 +1,4 @@
-
-[View the live site](https://danielzeljko.github.io/memory-game/)
-
----
-
-![game](https://user-images.githubusercontent.com/115326106/198748191-cdf8f6ea-2b11-4a62-89cd-4e6da1cc0dd8.png)
+![game](https://user-images.githubusercontent.com/115326106/198896867-a2ee31a4-9cdf-449d-bf28-3a9cf9bb6a9f.png)
 
 # Rithm Pre-work: Memory Game
 
