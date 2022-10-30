@@ -50,7 +50,7 @@ body {
 }
 
 .hidden {
-  background: grey !important;
+  background: rgb(207, 196, 196) !important;
 }
 
 .game-container,
@@ -65,6 +65,10 @@ h1 {
 }
 p{
   font-size: 1.5rem;
+}
+
+li{
+  font-size: 1.3rem;;
 }
 
 .game-container ul {
@@ -134,3 +138,7 @@ p{
   50% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); }
   100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.0);}
 } */
+
+.bg-rithm {
+  background: rgb(228, 107, 102);
+}
